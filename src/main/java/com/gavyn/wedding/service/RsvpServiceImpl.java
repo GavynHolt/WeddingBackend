@@ -20,8 +20,8 @@ public class RsvpServiceImpl implements RsvpService {
         return rsvpDAO.getAllInvitations();
     }
 
-//    public Invitation getInvitation() {
-//
-////        return this.rsvpDAO.getInvitation();
-//    }
+    public Invitation getInvitationByUserCode(String userCode) {
+
+        return this.rsvpDAO.getInvitationByUserCode(userCode);
+    }
 }

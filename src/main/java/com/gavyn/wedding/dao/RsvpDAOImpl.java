@@ -23,8 +23,13 @@ public class RsvpDAOImpl implements RsvpDAO {
         return invitations;
     }
 
-//    public Invitation getInvitation() {
-//
-//
-//    }
+    public Invitation getInvitationByUserCode(String userCode) {
+
+        Query invitationQuery = entityManager.createQuery("from Invitation where user_code=:userCode");
+        invitationQuery.setParameter("userCode", userCode);
+
+        Invitation result = (Invitation) invitationQuery.getSingleResult();
+
+        return result;
+    }
 }

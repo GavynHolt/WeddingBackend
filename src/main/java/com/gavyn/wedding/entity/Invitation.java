@@ -14,6 +14,9 @@ public class Invitation {
     @Column(name="id")
     private int id;
 
+    @Column(name="user_code")
+    private String userCode;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "invitation",
         cascade={CascadeType.ALL}
@@ -33,6 +36,14 @@ public class Invitation {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
 
     public List<Guest> getGuests() {

@@ -8,5 +8,5 @@ public interface RsvpDAO {
 
     public List<Invitation> getAllInvitations();
 
-//    public Invitation getInvitation();
+    public Invitation getInvitationByUserCode(String userCode);
 }

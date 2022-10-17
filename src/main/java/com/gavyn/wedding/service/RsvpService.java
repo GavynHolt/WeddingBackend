@@ -8,5 +8,5 @@ public interface RsvpService {
 
     List<Invitation> getAllInvitations();
 
-//    public Invitation getInvitation();
+    public Invitation getInvitationByUserCode(String userCode);
 }

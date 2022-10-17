@@ -21,7 +21,7 @@ public class InviteRestController {
 
     Logger logger = LoggerFactory.getLogger(InviteRestController.class);
 
-    @GetMapping("{username}")
+    @GetMapping("invitations")
     public ResponseEntity<List<Invitation>> getAllInvitations(@PathVariable(value="username") String username) {
 
         logger.info("userCode: " + username);
@@ -30,4 +30,13 @@ public class InviteRestController {
 
         return new ResponseEntity<List<Invitation>>( invitations, HttpStatus.OK);
     }
+
+    @GetMapping("invitations/{userCode}")
+    public ResponseEntity<Invitation> getInvitationByUserCode(@PathVariable(value="userCode") String userCode) {
+
+        Invitation invitation = rsvpService.getInvitationByUserCode(userCode);
+
+        return new ResponseEntity<Invitation>(invitation, HttpStatus.OK);
+    }
+
 }

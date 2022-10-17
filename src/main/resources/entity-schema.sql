@@ -1,7 +1,7 @@
 
 CREATE TABLE invitations (
     id SERIAL primary key,
-    user_code varchar(50) unique,
+    user_code varchar(50)  unique,
     notes text
 );
 
