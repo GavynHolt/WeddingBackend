@@ -61,4 +61,15 @@ public class Invitation {
     public void setNotes(String notes) {
         this.notes = notes;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Invitation{");
+        sb.append("id=").append(id);
+        sb.append(", userCode='").append(userCode).append('\'');
+        sb.append(", guests=").append(guests);
+        sb.append(", notes='").append(notes).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

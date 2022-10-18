@@ -9,4 +9,6 @@ public interface RsvpService {
     List<Invitation> getAllInvitations();
 
     public Invitation getInvitationByUserCode(String userCode);
+
+    public void updateInvitationRsvps(Invitation invitationToUpdate);
 }

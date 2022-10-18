@@ -24,4 +24,11 @@ public class RsvpServiceImpl implements RsvpService {
 
         return this.rsvpDAO.getInvitationByUserCode(userCode);
     }
+
+    @Override
+    @Transactional
+    public void updateInvitationRsvps(Invitation invitationToUpdate) {
+
+        this.rsvpDAO.updateInvitationRsvps(invitationToUpdate);
+    }
 }

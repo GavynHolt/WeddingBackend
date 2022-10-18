@@ -36,7 +36,21 @@ public class InviteRestController {
 
         Invitation invitation = rsvpService.getInvitationByUserCode(userCode);
 
+        logger.info("get - " + invitation.toString());
+
         return new ResponseEntity<Invitation>(invitation, HttpStatus.OK);
+    }
+
+    @PutMapping("invitations")
+    public ResponseEntity<Invitation> updateInvitationRsvps(@RequestBody Invitation invitationToUpdate) {
+
+        logger.info("update - " + invitationToUpdate.toString());
+
+        rsvpService.updateInvitationRsvps(invitationToUpdate);
+
+        Invitation updatedInvitation = rsvpService.getInvitationByUserCode(invitationToUpdate.getUserCode());
+
+        return new ResponseEntity<Invitation>(updatedInvitation, HttpStatus.OK);
     }
 
 }

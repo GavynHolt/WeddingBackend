@@ -32,4 +32,9 @@ public class RsvpDAOImpl implements RsvpDAO {
 
         return result;
     }
+
+    public void updateInvitationRsvps(Invitation invitationToUpdate) {
+
+        entityManager.merge(invitationToUpdate);
+    }
 }

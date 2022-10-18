@@ -9,4 +9,6 @@ public interface RsvpDAO {
     public List<Invitation> getAllInvitations();
 
     public Invitation getInvitationByUserCode(String userCode);
+
+    public void updateInvitationRsvps(Invitation invitationToUpdate);
 }

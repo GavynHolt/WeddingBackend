@@ -92,4 +92,17 @@ public class Guest {
     public void setInvitation(Invitation invitation) {
         this.invitation = invitation;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Guest{");
+        sb.append("id=").append(id);
+        sb.append(", firstName='").append(firstName).append('\'');
+        sb.append(", lastName='").append(lastName).append('\'');
+        sb.append(", rsvp=").append(rsvp);
+        sb.append(", rsvpCeremony=").append(rsvpCeremony);
+        sb.append(", rsvpReception=").append(rsvpReception);
+        sb.append('}');
+        return sb.toString();
+    }
 }
