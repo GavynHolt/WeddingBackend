@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200", "https://dapper-biscuit-55d875.netlify.app/"})
+@CrossOrigin(origins = { "http://localhost:4200", "https://gavynandjacqueline.com"})
 public class InviteRestController {
 
     @Autowired
