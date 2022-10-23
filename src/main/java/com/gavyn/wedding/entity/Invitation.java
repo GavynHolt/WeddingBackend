@@ -3,6 +3,9 @@ package com.gavyn.wedding.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
@@ -25,6 +28,9 @@ public class Invitation {
 
     @Column(name="notes")
     private String notes;
+
+    @Column(name="last_modified")
+    private ZonedDateTime lastModified;
 
     public Invitation() {
 
@@ -62,6 +68,14 @@ public class Invitation {
         this.notes = notes;
     }
 
+    public ZonedDateTime getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(ZonedDateTime lastModified) {
+        this.lastModified = lastModified;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Invitation{");
@@ -69,6 +83,7 @@ public class Invitation {
         sb.append(", userCode='").append(userCode).append('\'');
         sb.append(", guests=").append(guests);
         sb.append(", notes='").append(notes).append('\'');
+        sb.append(", lastModified=").append(lastModified);
         sb.append('}');
         return sb.toString();
     }

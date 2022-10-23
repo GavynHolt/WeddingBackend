@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Repository
@@ -34,6 +36,8 @@ public class RsvpDAOImpl implements RsvpDAO {
     }
 
     public void updateInvitationRsvps(Invitation invitationToUpdate) {
+
+        invitationToUpdate.setLastModified(ZonedDateTime.now());
 
         entityManager.merge(invitationToUpdate);
     }
