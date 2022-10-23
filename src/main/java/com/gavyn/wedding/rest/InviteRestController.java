@@ -13,7 +13,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200", "https://gavynandjacqueline.com"})
+@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com"})
 public class InviteRestController {
 
     @Autowired
