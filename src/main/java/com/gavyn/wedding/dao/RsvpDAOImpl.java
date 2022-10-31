@@ -1,5 +1,6 @@
 package com.gavyn.wedding.dao;
 
+import com.gavyn.wedding.entity.Guest;
 import com.gavyn.wedding.entity.Invitation;
 import com.gavyn.wedding.rest.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import java.sql.Timestamp;
+import javax.persistence.TypedQuery;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -18,13 +19,11 @@ public class RsvpDAOImpl implements RsvpDAO {
     @Autowired
     private EntityManager entityManager;
 
-    public List<Invitation> getAllInvitations() {
+    public List<Guest> getAllGuestRsvps() {
 
-        Query theQuery = entityManager.createQuery("from Invitation");
+        TypedQuery<Guest> query = entityManager.createQuery("from Guest", Guest.class);
 
-        List<Invitation> invitations = theQuery.getResultList();
-
-        return invitations;
+        return query.getResultList();
     }
 
     public Invitation getInvitationByUserCode(String userCode) {
@@ -37,6 +36,11 @@ public class RsvpDAOImpl implements RsvpDAO {
         } catch (NoResultException nre){
             throw new NotFoundException("No invitation found with the given user code.");
         }
+    }
+
+    public Invitation addInvitation(Invitation invitationToAdd) {
+
+        return entityManager.merge(invitationToAdd);
     }
 
     public void updateInvitationRsvps(Invitation invitationToUpdate) {

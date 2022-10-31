@@ -1,5 +1,6 @@
 package com.gavyn.wedding.rest;
 
+import com.gavyn.wedding.entity.Guest;
 import com.gavyn.wedding.entity.Invitation;
 import com.gavyn.wedding.service.RsvpService;
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com"})
+@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" })
 public class InviteRestController {
 
     @Autowired
@@ -21,14 +22,14 @@ public class InviteRestController {
 
     Logger logger = LoggerFactory.getLogger(InviteRestController.class);
 
-    @GetMapping("invitations")
-    public ResponseEntity<List<Invitation>> getAllInvitations(@PathVariable(value="username") String username) {
+    @GetMapping("guests/rsvps")
+    public ResponseEntity<List<Guest>> getAllGuestRsvps() {
 
-        logger.info("userCode: " + username);
+        logger.info("get all Guest RSVPs");
 
-        List<Invitation> invitations = rsvpService.getAllInvitations();
+        List<Guest> guestRsvps = rsvpService.getAllGuestRsvps();
 
-        return new ResponseEntity<List<Invitation>>( invitations, HttpStatus.OK);
+        return new ResponseEntity<>(guestRsvps, HttpStatus.OK);
     }
 
     @GetMapping("invitations/{userCode}")
@@ -38,7 +39,15 @@ public class InviteRestController {
 
         logger.info("get - " + invitation.toString());
 
-        return new ResponseEntity<Invitation>(invitation, HttpStatus.OK);
+        return new ResponseEntity<>(invitation, HttpStatus.OK);
+    }
+
+    @PostMapping("admin/invitations")
+    public ResponseEntity<Invitation> addInvitation(@RequestBody Invitation invitationToAdd) {
+
+        Invitation invitation = rsvpService.addInvitation(invitationToAdd);
+
+        return new ResponseEntity<>(invitation, HttpStatus.OK);
     }
 
     @PutMapping("invitations")

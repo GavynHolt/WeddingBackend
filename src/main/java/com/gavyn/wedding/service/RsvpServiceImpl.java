@@ -1,6 +1,7 @@
 package com.gavyn.wedding.service;
 
 import com.gavyn.wedding.dao.RsvpDAO;
+import com.gavyn.wedding.entity.Guest;
 import com.gavyn.wedding.entity.Invitation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,13 +17,21 @@ public class RsvpServiceImpl implements RsvpService {
 
     @Override
     @Transactional
-    public List<Invitation> getAllInvitations() {
-        return rsvpDAO.getAllInvitations();
+    public List<Guest> getAllGuestRsvps() {
+        return rsvpDAO.getAllGuestRsvps();
     }
 
+    @Override
+    @Transactional
     public Invitation getInvitationByUserCode(String userCode) {
 
         return this.rsvpDAO.getInvitationByUserCode(userCode);
+    }
+
+    @Override
+    @Transactional
+    public Invitation addInvitation(Invitation invitationToAdd) {
+        return this.rsvpDAO.addInvitation(invitationToAdd);
     }
 
     @Override
