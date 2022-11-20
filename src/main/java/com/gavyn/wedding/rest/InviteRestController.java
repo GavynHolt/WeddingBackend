@@ -2,6 +2,7 @@ package com.gavyn.wedding.rest;
 
 import com.gavyn.wedding.entity.Guest;
 import com.gavyn.wedding.entity.Invitation;
+import com.gavyn.wedding.entity.User;
 import com.gavyn.wedding.service.RsvpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" })
+@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" }, allowCredentials = "true")
 public class InviteRestController {
 
     @Autowired
@@ -22,10 +23,16 @@ public class InviteRestController {
 
     Logger logger = LoggerFactory.getLogger(InviteRestController.class);
 
-    @GetMapping("guests/rsvps")
+    @PostMapping("/login")
+    public boolean login(@RequestBody User user) {
+        return
+                user.getUsername().equals("admin") && user.getPassword().equals("test1234");
+    }
+
+    @GetMapping("admin/rsvps")
     public ResponseEntity<List<Guest>> getAllGuestRsvps() {
 
-        logger.info("get all Guest RSVPs");
+        logger.info("[ADMIN] get all Guest RSVPs");
 
         List<Guest> guestRsvps = rsvpService.getAllGuestRsvps();
 
