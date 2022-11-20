@@ -25,6 +25,9 @@ public class InviteRestController {
 
     @PostMapping("/login")
     public boolean login(@RequestBody User user) {
+
+        logger.info("LOGIN - " + user.getUsername());
+
         return
                 user.getUsername().equals("admin") && user.getPassword().equals("test1234");
     }
@@ -44,7 +47,7 @@ public class InviteRestController {
 
         Invitation invitation = rsvpService.getInvitationByUserCode(userCode);
 
-        logger.info("get - " + invitation.toString());
+        logger.info("get rsvp - " + invitation.toString());
 
         return new ResponseEntity<>(invitation, HttpStatus.OK);
     }
@@ -54,17 +57,19 @@ public class InviteRestController {
 
         Invitation invitation = rsvpService.addInvitation(invitationToAdd);
 
+        logger.info("create rsvp - " + invitationToAdd.toString());
+
         return new ResponseEntity<>(invitation, HttpStatus.OK);
     }
 
     @PutMapping("invitations")
     public ResponseEntity<Invitation> updateInvitationRsvps(@RequestBody Invitation invitationToUpdate) {
 
-        logger.info("update - " + invitationToUpdate.toString());
-
         rsvpService.updateInvitationRsvps(invitationToUpdate);
 
         Invitation updatedInvitation = rsvpService.getInvitationByUserCode(invitationToUpdate.getUserCode());
+
+        logger.info("update rsvp - " + invitationToUpdate.toString());
 
         return new ResponseEntity<Invitation>(updatedInvitation, HttpStatus.OK);
     }
