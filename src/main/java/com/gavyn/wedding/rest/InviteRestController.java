@@ -15,7 +15,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" }, allowCredentials = "true")
+@CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" })
 public class InviteRestController {
 
     @Autowired
@@ -26,10 +26,9 @@ public class InviteRestController {
     @PostMapping("/login")
     public boolean login(@RequestBody User user) {
 
-        logger.info("LOGIN - " + user.getUsername());
+        logger.info("LOGIN - " + user.getUsername() + ", " + user.getPassword());
 
-        return
-                user.getUsername().equals("admin") && user.getPassword().equals("test1234");
+        return user.getUsername().equals("admin") && user.getPassword().equals("test1234");
     }
 
     @GetMapping("admin/rsvps")
