@@ -3,8 +3,6 @@ package com.gavyn.wedding.entity;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -25,6 +23,9 @@ public class Invitation {
         cascade={CascadeType.ALL}
     )
     private List<Guest> guests;
+
+    @Column(name="email")
+    private String email;
 
     @Column(name="notes")
     private String notes;
@@ -60,6 +61,14 @@ public class Invitation {
         this.guests = guests;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getNotes() {
         return notes;
     }
@@ -82,6 +91,7 @@ public class Invitation {
         sb.append("id=").append(id);
         sb.append(", userCode='").append(userCode).append('\'');
         sb.append(", guests=").append(guests);
+        sb.append(", email=").append(email);
         sb.append(", notes='").append(notes).append('\'');
         sb.append(", lastModified=").append(lastModified);
         sb.append('}');
