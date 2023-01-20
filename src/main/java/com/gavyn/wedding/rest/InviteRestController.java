@@ -19,7 +19,7 @@ import java.util.List;
 @CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" })
 public class InviteRestController {
 
-    @Value("ADMIN_PASSWORD")
+    @Value("${ADMIN_PASSWORD}")
     private String adminPassword;
 
     @Autowired

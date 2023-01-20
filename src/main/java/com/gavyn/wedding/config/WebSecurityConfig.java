@@ -14,7 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Value("ADMIN_PASSWORD")
+    @Value("${ADMIN_PASSWORD}")
     private String adminPassword;
 
     @Override
