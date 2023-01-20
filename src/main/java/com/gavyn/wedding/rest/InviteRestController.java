@@ -7,6 +7,7 @@ import com.gavyn.wedding.service.RsvpService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +19,9 @@ import java.util.List;
 @CrossOrigin(origins = { "http://localhost:4200", "https://www.gavynandjacqueline.com" })
 public class InviteRestController {
 
+    @Value("ADMIN_PASSWORD")
+    private String adminPassword;
+
     @Autowired
     private RsvpService rsvpService;
 
@@ -28,7 +32,7 @@ public class InviteRestController {
 
         logger.info("LOGIN - " + user.getUsername());
 
-        return user.getUsername().equals("admin") && user.getPassword().equals("test1234");
+        return user.getUsername().equals("admin") && user.getPassword().equals(adminPassword);
     }
 
     @GetMapping("admin/rsvps")
