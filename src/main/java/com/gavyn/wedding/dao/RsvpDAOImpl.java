@@ -29,8 +29,8 @@ public class RsvpDAOImpl implements RsvpDAO {
     public Invitation getInvitationByUserCode(String userCode) {
 
         try {
-            Query invitationQuery = entityManager.createQuery("from Invitation where user_code=:userCode");
-            invitationQuery.setParameter("userCode", userCode);
+            Query invitationQuery = entityManager.createQuery("from Invitation where lower(user_code)=:userCode");
+            invitationQuery.setParameter("userCode", userCode.toLowerCase());
             Invitation result = (Invitation) invitationQuery.getSingleResult();
             return result;
         } catch (NoResultException nre){
