@@ -30,7 +30,7 @@ public class InviteRestController {
     @PostMapping("/login")
     public boolean login(@RequestBody User user) {
 
-        logger.info("LOGIN - " + user.getUsername() + " " + user.getPassword() + adminPassword);
+        logger.info("LOGIN - " + user.getUsername());
 
         return user.getUsername().equals("admin") && user.getPassword().equals(adminPassword);
     }
